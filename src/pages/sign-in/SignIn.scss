@@ -1,0 +1,127 @@
+$bg-color: #f5f5f5;
+$pri-color: #034867;
+
+.main-container {
+    background-color: $pri-color;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.signIn-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    .page-heading {
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 1rem;
+    
+            .wave {
+                animation: wave-animation 2.5s infinite;
+                transform-origin: 70% 70%;
+                display: inline-block;
+            }
+        }
+    .page-link {
+        color: #fff;
+        font-size: 0.8rem;
+        a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.form-container {
+    width: 50%;
+    padding: 2rem;
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+    &.email {
+        margin-bottom: 1.5rem;
+    }
+    label {
+        color: $pri-color;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+    input {
+        width: 100%;
+        border: 1px solid $pri-color;
+        border-radius: 4px;
+        min-height: 3rem;
+        padding: 0.5rem;
+        font-size: 1rem;
+        font-family: inherit;
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+.password-field {
+    position: relative;
+    .eyeBtn {
+        border: none;
+        background-color: transparent;
+        position: absolute;
+        right: 1rem;
+        top: 0.9rem;
+        cursor: pointer;
+    }
+}
+
+.forgot-password {
+    margin: 0.2rem 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    .forgot {
+        color: $pri-color;
+        text-decoration: none;
+        font-size: 0.8rem;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.submit-btn {
+    width: 100%;
+    height: 3rem;
+    background-color: $pri-color;
+    font-size: 1rem;
+    font-family: inherit;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+@keyframes wave-animation {
+    0% {transform: rotate(0deg)}
+    10% {transform: rotate(14deg)}
+    20% {transform: rotate(-8deg)}
+    30% {transform: rotate(14deg)}
+    40% {transform: rotate(-4deg)}
+    50% {transform: rotate(10deg)}
+    60% {transform: rotate(0deg)}
+    100% {transform: rotate(0deg)}
+}
