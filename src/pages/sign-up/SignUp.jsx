@@ -2,10 +2,15 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BiShowAlt, BiHide } from "react-icons/bi";
 import "./SignUp.scss";
+import GoogleBtn from "../../components/google-button/GoogleBtn";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const [formData, SetFormData] = useState({ name:"", email: "", password: "" });
+  const [formData, SetFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const [show, setShow] = useState(false);
 
   const { name, email, password } = formData;
@@ -60,6 +65,8 @@ const SignUp = () => {
             Sign Up
           </button>
         </form>
+        <p className="or">Or</p>
+        <GoogleBtn />
       </main>
     </div>
   );

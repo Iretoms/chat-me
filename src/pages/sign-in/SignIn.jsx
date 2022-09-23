@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BiShowAlt, BiHide } from "react-icons/bi";
 import "./SignIn.scss";
+import GoogleBtn from "../../components/google-button/GoogleBtn";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const SignIn = () => {
           Welcome Back <span className="wave">👋</span>
         </h1>
         <p className="page-link">
-            Not registered? <Link to="/sign-up">Sign Up</Link>
+          Not registered? <Link to="/sign-up">Sign Up</Link>
         </p>
       </header>
       <main className="form-container">
@@ -67,6 +68,8 @@ const SignIn = () => {
             Sign In
           </button>
         </form>
+        <p className="or">Or</p>
+        <GoogleBtn />
       </main>
     </div>
   );
