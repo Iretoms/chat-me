@@ -27,9 +27,32 @@ const SignIn = () => {
     }));
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-   
+    if (email.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{3,10}$/)) {
+      try {
+        const auth = getAuth();
+
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        if (userCredential.user) {
+          navigate("/");
+        }
+      } catch (error) {
+        toast.error("incorrect credentials");
+      }
+    } else {
+      setErrorMessage(
+        "*should contain atleast one uppercase, lowercase and number"
+      );
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
+    }
   };
 
   return (
