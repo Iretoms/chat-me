@@ -39,7 +39,7 @@ const SignUp = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (email.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{3,10}$/)) {
+    if (password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{3,10}$/)) {
       try {
         const auth = getAuth();
         const userCredential = await createUserWithEmailAndPassword(
@@ -111,7 +111,11 @@ const SignUp = () => {
                 value={password}
                 onChange={onChange}
               />
-              <button onClick={() => setShow(!show)} className="eyeBtn">
+              <button
+                type="button"
+                onClick={() => setShow(!show)}
+                className="eyeBtn"
+              >
                 {eyeIcon}
               </button>
             </div>

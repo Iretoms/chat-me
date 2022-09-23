@@ -29,7 +29,7 @@ const SignIn = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (email.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{3,10}$/)) {
+    if (password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{3,10}$/)) {
       try {
         const auth = getAuth();
 
@@ -43,7 +43,7 @@ const SignIn = () => {
           navigate("/");
         }
       } catch (error) {
-        toast.error("incorrect credentials");
+        toast.error("Sorry you dont have an account, please Sign Up");
       }
     } else {
       setErrorMessage(
@@ -87,7 +87,11 @@ const SignIn = () => {
                 value={password}
                 onChange={onChange}
               />
-              <button onClick={() => setShow(!show)} className="eyeBtn">
+              <button
+                type="button"
+                onClick={() => setShow(!show)}
+                className="eyeBtn"
+              >
                 {eyeIcon}
               </button>
             </div>
