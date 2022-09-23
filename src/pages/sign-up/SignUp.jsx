@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "../../firebase.config";
+import { toast } from "react-toastify";
 import { BiShowAlt, BiHide } from "react-icons/bi";
 import "./SignUp.scss";
 import GoogleBtn from "../../components/google-button/GoogleBtn";
@@ -12,6 +20,7 @@ const SignUp = () => {
     password: "",
   });
   const [show, setShow] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const { name, email, password } = formData;
 
@@ -28,8 +37,41 @@ const SignUp = () => {
     }));
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+    if (email.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{3,10}$/)) {
+      try {
+        const auth = getAuth();
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        const user = userCredential.user;
+
+        updateProfile(auth.currentUser, {
+          displayName: name,
+        });
+
+        const formDataCopy = { ...formData };
+        delete formDataCopy.password;
+        formDataCopy.timestamp = serverTimestamp();
+
+        await setDoc(doc(db, "users", user.uid), formDataCopy);
+
+        navigate("/");
+      } catch (error) {
+        toast.error("Something went wrong, try again");
+      }
+    } else {
+      setErrorMessage(
+        "*should contain atleast one uppercase, lowercase and number"
+      );
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
+    }
   };
 
   return (
@@ -41,11 +83,23 @@ const SignUp = () => {
         <form onSubmit={onSubmit}>
           <div className="form-control name">
             <label htmlFor="email">Name</label>
-            <input type="text" id="name" value={name} onChange={onChange} />
+            <input
+              type="text"
+              id="name"
+              required
+              value={name}
+              onChange={onChange}
+            />
           </div>
           <div className="form-control email">
             <label htmlFor="email">Email Address</label>
-            <input type="email" id="email" value={email} onChange={onChange} />
+            <input
+              type="email"
+              id="email"
+              required
+              value={email}
+              onChange={onChange}
+            />
           </div>
           <div className="form-control password">
             <label htmlFor="password">Password</label>
@@ -53,6 +107,7 @@ const SignUp = () => {
               <input
                 type={show ? "text" : "password"}
                 id="password"
+                required
                 value={password}
                 onChange={onChange}
               />
@@ -60,6 +115,9 @@ const SignUp = () => {
                 {eyeIcon}
               </button>
             </div>
+          </div>
+          <div className="forgot-password">
+            <p>{errorMessage}</p>
           </div>
           <button type="submit" className="submit-btn">
             Sign Up

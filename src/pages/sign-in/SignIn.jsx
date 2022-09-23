@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { toast } from "react-toastify";
 import { BiShowAlt, BiHide } from "react-icons/bi";
 import "./SignIn.scss";
 import GoogleBtn from "../../components/google-button/GoogleBtn";
@@ -8,6 +10,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [formData, SetFormData] = useState({ email: "", password: "" });
   const [show, setShow] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const { email, password } = formData;
 
@@ -26,6 +29,7 @@ const SignIn = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+   
   };
 
   return (
@@ -42,7 +46,13 @@ const SignIn = () => {
         <form onSubmit={onSubmit}>
           <div className="form-control email">
             <label htmlFor="email">Email Address</label>
-            <input type="email" id="email" value={email} onChange={onChange} />
+            <input
+              type="email"
+              id="email"
+              required
+              value={email}
+              onChange={onChange}
+            />
           </div>
           <div className="form-control">
             <label htmlFor="password">Password</label>
@@ -50,6 +60,7 @@ const SignIn = () => {
               <input
                 type={show ? "text" : "password"}
                 id="password"
+                required
                 value={password}
                 onChange={onChange}
               />
@@ -59,7 +70,7 @@ const SignIn = () => {
             </div>
           </div>
           <div className="forgot-password">
-            <p> </p>
+            <p>{errorMessage}</p>
             <Link to="/forgot-password" className="forgot">
               Forgot Password?
             </Link>

@@ -90,6 +90,10 @@ $pri-color: #034867;
     margin: 0.2rem 0 1.5rem;
     display: flex;
     justify-content: space-between;
+    p {
+        color: red;
+        font-size: 0.6rem;
+    }
     .forgot {
         color: $pri-color;
         text-decoration: none;
