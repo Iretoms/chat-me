@@ -25,9 +25,9 @@ const SignUp = () => {
   const { name, email, password } = formData;
 
   const eyeIcon = show ? (
-    <BiShowAlt fill="#034867" size="1.2rem" />
-  ) : (
     <BiHide fill="#034867" size="1.2rem" />
+  ) : (
+    <BiShowAlt fill="#034867" size="1.2rem" />
   );
 
   const onChange = (e) => {
