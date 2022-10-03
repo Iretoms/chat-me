@@ -16,11 +16,10 @@ $pri-color: #034867;
     align-items: center;
     justify-content: space-between;
     width: 50%;
+    margin-bottom: 1.5rem;
     .page-heading {
             color: #fff;
             font-weight: 700;
-            margin-bottom: 1rem;
-    
             .wave {
                 animation: wave-animation 2.5s infinite;
                 transform-origin: 70% 70%;
@@ -42,11 +41,26 @@ $pri-color: #034867;
     }
 }
 
+@media screen and (max-width: 40rem) {
+    .signIn-heading {
+        width: 90%;
+        .page-heading {
+            font-size: 1.3rem;
+        }
+    }
+}
+
 .form-container {
     width: 50%;
     padding: 2rem;
     border-radius: 3px;
     background-color: #fff;
+}
+
+@media screen and (max-width: 40rem) {
+    .form-container {
+        width: 85%;
+    }
 }
 
 .form-control {

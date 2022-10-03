@@ -4,11 +4,14 @@ $pri-color: #034867;
 .homeHeader {
     height: 10vh;
     width:100%;
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .homeNav {
     width: 90%;
-    padding-top: 1rem;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -30,6 +33,7 @@ $pri-color: #034867;
             }
         }
         .userName {
+            font-weight: 500;
             font-size: 0.9rem;
         }
     }
@@ -44,5 +48,15 @@ $pri-color: #034867;
     cursor: pointer;
     &:active {
         transform: scale(0.98);
+    }
+}
+
+@media screen and (max-width: 40rem) {
+    .homeNav {
+        .userInfo{
+            .userName {
+                font-size: 0.8rem;
+            }
+        }
     }
 }

@@ -24,7 +24,10 @@ const Home = () => {
                 className="userImage"
               />
             </figure>
-            <p className="userName">Welcome {auth.currentUser.displayName}</p>
+            <div>
+              <p className="userName">Welcome</p>
+              <p className="userName">{auth.currentUser.displayName}</p>
+            </div>
           </div>
           <button className="logOutBtn" onClick={onLogOut}>
             Log out
