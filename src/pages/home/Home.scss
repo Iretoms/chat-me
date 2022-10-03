@@ -1,0 +1,48 @@
+$bg-color: #f5f5f5;
+$pri-color: #034867;
+
+.homeHeader {
+    height: 10vh;
+    width:100%;
+}
+
+.homeNav {
+    width: 90%;
+    padding-top: 1rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .userInfo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        .userImageContainer{
+            border: 2px solid $pri-color;
+            border-radius: 50%;
+            overflow: hidden;
+            width: 3rem;
+            height: 3rem;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .userName {
+            font-size: 0.9rem;
+        }
+    }
+}
+
+.logOutBtn {
+    border: none;
+    font-family: inherit;
+    color: #fff;
+    background-color: $pri-color;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    &:active {
+        transform: scale(0.98);
+    }
+}
