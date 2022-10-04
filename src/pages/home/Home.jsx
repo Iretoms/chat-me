@@ -1,4 +1,5 @@
 import "./Home.scss";
+import profileImage from "../../assets/png/profileImage.png"
 import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 
@@ -18,7 +19,7 @@ const Home = () => {
           <div className="userInfo">
             <figure className="userImageContainer">
               <img
-                src={auth.currentUser.photoURL ? auth.currentUser.photoURL : ""}
+                src={auth.currentUser.photoURL ? auth.currentUser.photoURL : profileImage}
                 alt="profile"
                 className="userImage"
               />
